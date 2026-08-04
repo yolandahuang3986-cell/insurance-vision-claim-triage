@@ -1,0 +1,10 @@
+{
+  "claim_id": "CLM-DEMO-001",
+  "policy_id": "POL-DEMO-001",
+  "incident_at": "2026-08-04T09:30:00Z",
+  "vehicle": {"make": "Demo Motors", "model": "City 1.6T", "year": 2023, "plate_last4": "1234"},
+  "customer_description": "左前车门疑似有划痕。",
+  "images": [
+    {"image_id": "IMG-001", "uri": "mock://left-door.jpg", "view": "left", "width": 1920, "height": 1080, "blur_score": 82, "brightness": 128, "has_vehicle": true, "sha256": "new-image-001", "phash": "aabbccddeeff0011"}
+  ]
+}
