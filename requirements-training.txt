@@ -1,0 +1,4 @@
+# Optional local-only dependencies. Do not install these for the mock MVP unless needed.
+ultralytics>=8.3
+torch>=2.0
+torchvision>=0.15

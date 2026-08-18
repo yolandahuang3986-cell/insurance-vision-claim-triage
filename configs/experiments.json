@@ -1,0 +1,32 @@
+{
+  "project": "vehicle_damage_instance_segmentation",
+  "dataset": {
+    "name": "CarDD",
+    "source_dir": "data/raw/CarDD",
+    "manifest": "data/processed/cardd_manifest.json",
+    "split": {"train": 0.7, "validation": 0.15, "test": 0.15},
+    "seed": 42
+  },
+  "methods": [
+    {
+      "name": "yolo_segmentation",
+      "entrypoint": "training/train_yolo.py",
+      "model": "YOLO segmentation baseline",
+      "image_size": 640,
+      "epochs": 50
+    },
+    {
+      "name": "mask_rcnn",
+      "entrypoint": "training/train_mask_rcnn.py",
+      "model": "Mask R-CNN ResNet-50 FPN baseline",
+      "image_size": 800,
+      "epochs": 20
+    }
+  ],
+  "metrics": ["mask_iou", "precision", "recall", "mAP50", "mAP50_95", "latency_ms"],
+  "evaluation": {
+    "confidence_threshold": 0.5,
+    "iou_match_threshold": 0.5,
+    "report_unknown_values_as": "TBD"
+  }
+}
