@@ -7,7 +7,7 @@
 ## 公平比较协议
 
 - 固定随机种子：42；
-- 固定 train/validation/test 比例：70%/15%/15%；
+- 固定使用 CarDD 官方 train/validation/test 划分：2816/810/374 张图片；
 - 两个方法使用相同的类别映射与测试集；
 - 记录输入分辨率、训练轮数、硬件、置信度阈值和 IoU 匹配阈值；
 - 报告 mask IoU、precision、recall、mAP@50、mAP@50:95 和单图 latency；

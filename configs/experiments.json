@@ -4,7 +4,9 @@
     "name": "CarDD",
     "source_dir": "data/raw/CarDD_release",
     "manifest": "data/processed/cardd_manifest.json",
-    "split": {"train": 0.7, "validation": 0.15, "test": 0.15},
+    "yolo_data": "data/processed/cardd_yolo/data.yaml",
+    "split_source": "CarDD official COCO split",
+    "split": {"train": 2816, "validation": 810, "test": 374},
     "seed": 42
   },
   "methods": [

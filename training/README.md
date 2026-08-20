@@ -4,4 +4,12 @@
 
 为了公平比较，两个方法应使用相同的数据划分、类别映射、评测阈值和测试集。模型权重和 checkpoints 只保存在本地，`.gitignore` 与提交打包脚本会排除它们。
 
-CarDD manifest 不是任何框架的最终配置文件。运行真实训练前，应把 manifest 中的图片路径和 mask 标注转换为对应框架所需的 YOLO YAML/labels 或 torchvision Dataset 适配器。
+CarDD 的官方 COCO 标注可以先转换为 YOLO segmentation 格式：
+
+```bash
+python dataset/convert_coco_to_yolo.py \
+  --source-dir data/raw/CarDD_release \
+  --output-dir data/processed/cardd_yolo
+```
+
+转换默认创建图片 symlink，不会复制原始图片；如训练环境不支持 symlink，可增加 `--link-mode copy`。输出的 `data/processed/cardd_yolo/data.yaml` 可直接作为 `training/train_yolo.py --data-yaml` 的输入。
