@@ -45,7 +45,7 @@ src/insurance_vision_claim_triage/
   triage.py          风险规则与路由
   pipeline.py        端到端 MVP pipeline
 dataset/             CarDD 本地数据准备说明与 manifest 生成器
-training/            YOLO Segmentation / Mask R-CNN 训练入口（可替换骨架）
+training/            YOLO Segmentation / Mask R-CNN 训练入口与 CarDD Dataset adapter
 evaluation/          指标、方法对比和错误分类
 configs/             可复现实验配置
 scripts/             离线课程提交包构建工具
