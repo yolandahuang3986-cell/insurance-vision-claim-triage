@@ -1,0 +1,22 @@
+{
+  "evaluation_split": "test",
+  "num_test_images": 374,
+  "conf_threshold": 0.5,
+  "iou_match_threshold": 0.5,
+  "mean_mask_iou": 0.8207,
+  "matched_pairs": 400,
+  "unmatched_predictions": 126,
+  "per_class_mean_mask_iou": {
+    "dent": 0.7869,
+    "scratch": 0.7545,
+    "crack": 0.6412,
+    "glass shatter": 0.9379,
+    "lamp broken": 0.9097,
+    "tire flat": 0.9529
+  },
+  "error_category_counts": {
+    "correct": 400,
+    "missed_damage": 385
+  },
+  "note": "unmatched_predictions are extra detections with no same-class GT instance above iou_match_threshold. classify_error() has no dedicated false-positive category, so it is only applied to matched pairs and to missed GT instances; unmatched_predictions is reported separately instead of being forced into it."
+}

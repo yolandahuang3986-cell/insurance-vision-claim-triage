@@ -1,0 +1,13 @@
+{
+  "method": "YOLO Segmentation",
+  "mask_iou": 0.8207,
+  "precision": 0.8138086925822775,
+  "recall": 0.6243468826460153,
+  "latency_ms": 8.63,
+  "mAP50": 0.5912068243407035,
+  "mAP50_95": 0.4698699032637544,
+  "box_precision": 0.8090369967728459,
+  "box_recall": 0.622835471478556,
+  "matched_pairs": 400,
+  "unmatched_predictions": 126
+}
