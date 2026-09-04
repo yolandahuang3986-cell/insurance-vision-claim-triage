@@ -1,0 +1,22 @@
+{
+  "evaluation_split": "test",
+  "num_test_images": 374,
+  "conf_threshold": 0.5,
+  "iou_match_threshold": 0.5,
+  "mean_mask_iou": 0.7965,
+  "matched_pairs": 542,
+  "unmatched_predictions": 374,
+  "per_class_mean_mask_iou": {
+    "dent": 0.7672,
+    "scratch": 0.7397,
+    "crack": 0.6862,
+    "glass shatter": 0.9285,
+    "lamp broken": 0.8936,
+    "tire flat": 0.9511
+  },
+  "error_category_counts": {
+    "correct": 542,
+    "missed_damage": 243
+  },
+  "note": "Same greedy same-class matched-pair protocol as evaluation/mask_iou.py (the YOLO version), applied to the Mask R-CNN checkpoint, so both methods are directly comparable."
+}

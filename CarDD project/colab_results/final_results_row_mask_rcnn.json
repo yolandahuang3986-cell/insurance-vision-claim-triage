@@ -1,0 +1,13 @@
+{
+  "method": "Mask R-CNN",
+  "mask_iou": 0.7965,
+  "precision": 0.6239991237587103,
+  "recall": 0.7466765616770369,
+  "latency_ms": 139.8582943743374,
+  "mAP50": 0.7107082908094972,
+  "mAP50_95": 0.5091906967130552,
+  "box_precision": 0.6338506449096665,
+  "box_recall": 0.7573851293198507,
+  "matched_pairs": 542,
+  "unmatched_predictions": 374
+}
