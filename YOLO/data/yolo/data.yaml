@@ -1,5 +1,0 @@
-path: /Users/wang/Desktop/YOLO/data/yolo
-train: images/train
-val: images/val
-test: images/test
-names: ["dent", "scratch", "crack", "glass shatter", "lamp broken", "tire flat"]
