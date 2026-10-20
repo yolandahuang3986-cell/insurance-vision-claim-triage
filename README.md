@@ -1,4 +1,4 @@
-# Insurance Vision Claim Triage
+# Insurance Vision Claim Triage — CA6129 Group 15
 
 车险图片理赔预审 MVP：对案件图片做质量门禁、损伤结构化、重复图片风险提示，并给出可解释的人工审核路由。
 
@@ -13,7 +13,31 @@
 - 统一评测：mask IoU、precision、recall、mAP@50、mAP@50:95、单图延迟，并进行按错误类型的分析；
 - 研究边界：模型输出只用于视觉证据预审，不直接作出赔付或拒赔决定。
 
-课程轨道的实验脚手架、数据准备入口、报告模板和离线打包工具已经放在 `dataset/`、`training/`、`evaluation/`、`docs/` 和 `scripts/`。真实模型训练需要成员在本地安装可选依赖并填入数据集的实际标注格式；仓库不会下载或保存权重。
+课程报告中的训练与补充实验已经完成。`experiments/` 包含统一评估、尺寸重训练、组件分析、验证集重建选择、阈值校准、bootstrap 和重复计时代码。应用仍用 mock provider，未接入真实权重。历史 YOLO 逐 epoch 日志未找回；后续重训练日志已保留。
+
+## 交付与复现导航
+
+- [实验与代码对应表](docs/experiment_map.md)
+- [完整运行指南](docs/reproduction.md)：安装环境、数据目录、运行顺序和输出位置
+- [AI 与使用许可](docs/academic_and_licensing.md)
+- [第三方说明](THIRD_PARTY_NOTICES.md)
+
+无 GPU 核验（Python 3.12 为本次交付测试环境）：
+
+```sh
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install 'pytest>=8,<9' -r experiments/requirements-analysis.txt
+python examples/run_mock.py
+python -m pytest -q
+python -m unittest discover -s experiments -p 'test_*.py' -v
+python reporting/verify_metrics.py
+python reporting/plot_metrics.py --output outputs/report_figures
+```
+
+`reporting/metrics.json` 是带来源哈希的汇总：九种配置的指标、区间、组件分析、验证集选择、五轮计时与训练曲线数值。不含图片、原始标注、逐实例掩码或权重。汇总算术核验不等于重新训练或独立重算 AP。
+
+GPU 实验另建 Linux/CUDA 环境。记录环境为 Python 3.13.5、A40、PyTorch 2.11.0+cu128、torchvision 0.26.0+cu128、Ultralytics 8.4.138；依赖见 `experiments/requirements-gpu.txt`。不要将 CUDA 依赖装到 Mac 的 mock 环境。
 
 ## MVP 目标
 
@@ -83,22 +107,23 @@ PYTHONPATH=src python examples/run_mock.py
 课程要求代码包不包含数据集、模型权重、云端文件或外部链接。完成本地实验后，可在仓库根目录执行：
 
 ```bash
-PYTHONPATH=src python scripts/build_submission_zip.py --group-id XX
+python scripts/build_submission_zip.py --group-id 15
 ```
 
-脚本会生成 `submissions/group_XX_code.zip` 和一份内容清单；其中 `XX` 替换为课程分配的组号。
+脚本生成 `submissions/group_15_code.zip` 和 `SUBMISSION_MANIFEST.json`，扫描 JSON 数据载荷、云盘替代文件链接与文件大小，排除图片、数据、权重、运行输出和符号链接，验证 ZIP 并记录文件哈希。按课程“不得提供外部链接”的要求，打包文件中出现任何 http(s) URL 都会使构建失败。
 
 ## 当前明确不做
 
 - 不接入真实图片存储或上传服务；
-- 不训练或下载 CarDD/YOLO 权重；
+- mock 应用启动时不训练或下载模型；研究训练由独立入口执行；
 - 不输出维修金额或自动批准/拒绝理赔；
 - 不把图片相似度直接称为“欺诈”；
 - 不把课程中的 segmentation 概念硬编码为业务规则。
 
-## 当前仍需由小组补齐
+## 提交前仍须确认
 
-1. 按课程要求填写成员的学生卡全名、学号和贡献记录；
-2. 根据 CarDD 实际下载版本核对类别映射与标注格式；
-3. 在同一数据划分和随机种子下完成两个方法的训练与评测；
-4. 将真实结果填入 `docs/report_template.md`，不要把示例或未运行的数字当作实验结果。
+1. 核对报告、PPT 与独立贡献说明中的成员标识及实际贡献；
+2. 核实 CarDD 的事先研究授权，以及公开的 `CarDD project/manifests/cardd_manifest.json` 标注与 Git 历史中旧图片样例的再分发权限；
+3. 从 CA6129 的 NTULearn 或教师指引确认 AI 使用范围、声明格式与提交位置；
+4. 提交两份 PDF 与代码 ZIP，GitHub 或演示链接不能代替课程附件；
+5. 保留测试集曾暴露、历史 Mask R-CNN 测试集选点、单种子等局限。计时衡量低分数门槛下的 RGB-to-RLE 流水线成本，不是单独模型前向速度。

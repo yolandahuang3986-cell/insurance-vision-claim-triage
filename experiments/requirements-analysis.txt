@@ -1,0 +1,5 @@
+# CPU-only checking and figures. No model inference or training dependencies.
+numpy>=2,<3
+pillow>=10
+pycocotools==2.0.11
+matplotlib>=3.9,<4

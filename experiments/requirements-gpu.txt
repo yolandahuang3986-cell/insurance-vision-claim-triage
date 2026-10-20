@@ -1,0 +1,11 @@
+# Tested on the allocated TC2 NVIDIA A40, Linux, Python 3.13.5.
+# Optional experiment environment; not required for the mock application.
+# torch/torchvision +cu128 builds come from the official PyTorch CUDA 12.8 wheel index;
+# pass that index to pip with --extra-index-url when installing this file.
+torch==2.11.0+cu128
+torchvision==0.26.0+cu128
+ultralytics==8.4.138
+pycocotools==2.0.11
+numpy==2.5.2
+pillow==12.3.0
+matplotlib==3.11.2

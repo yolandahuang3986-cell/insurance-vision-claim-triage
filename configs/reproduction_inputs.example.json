@@ -1,0 +1,11 @@
+{
+  "dataset_root": "../data/raw/CarDD_COCO",
+  "weights": {
+    "historical_yolo640": "../weights/historical_yolo_best.pt",
+    "historical_mask800": "../weights/historical_mask_final.pt",
+    "retrained_mask640": "../outputs/retrain640/checkpoints/best.pt",
+    "retrained_mask800": "../outputs/retrain800/checkpoints/best.pt",
+    "retrained_yolo640": "../outputs/yolo640/training/weights/best.pt",
+    "retrained_yolo800": "../outputs/yolo800/training/weights/best.pt"
+  }
+}
